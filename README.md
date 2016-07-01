@@ -7,7 +7,7 @@ The app runs as a single self-contained local HTML file, no installs, perms, ser
 
 ## Setup
 
-1. [download html file](http://pagedemos.com/lockbox_demo/download) (or [save raw](https://raw.githubusercontent.com/rndme/lockbox/master/create-lockbox.html)), run locally in Chrome or Firefox
+1. [download html file](http://pagedemos.com/lockbox_demo/download) (or [save raw](https://raw.githubusercontent.com/rndme/lockbox/master/create-lockbox.html)), run locally in Chrome or Firefox (maybe others)
 2. choose a good password (8 chars min), enter it
 3. write your message or notes
 4. click "Encrypt and Download" to fetch a new password protected copy 
