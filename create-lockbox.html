@@ -178,6 +178,7 @@ function loadData() { // loads saved encrypted data into the editor
 	}
 
 	if(!out.value.trim()) { // first time running, do something special:
+	  	password.key = sjcl.codec.hex.toBits(derive(password.value));
 		editor.hidden = false;
 		loader.hidden = true;
 		out.focus();
@@ -190,6 +191,7 @@ function loadData() { // loads saved encrypted data into the editor
 	try {
 		var key = sjcl.codec.hex.toBits(derive(password.value)),
 			plain = sjcl.decrypt(key, out.value);
+	  	password.key = key;
 	} catch(y) { 
 		// wrong password was entered:
 		password.classList.add("error");
@@ -204,7 +206,6 @@ function loadData() { // loads saved encrypted data into the editor
 	// if this code runs, password was correct (GCM is authenticated)
 	editor.hidden = false;
 	loader.hidden = true;
-	password.key = key;
 	out.value = plain;
 	out.focus();
 	reseed();
