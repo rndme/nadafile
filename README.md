@@ -1,6 +1,10 @@
 # lockbox
 Safe and simple all-platform notepad protected with AES256-GCM
 
+
+## What / How
+The app runs as a single self-contained local HTML file, no installs, perms, servers, or config needed.
+
 ## Setup
 
 1. [download html file](http://pagedemos.com/lockbox_demo/download) (or [save raw](https://raw.githubusercontent.com/rndme/lockbox/master/create-lockbox.html)), run locally in Chrome or Firefox
