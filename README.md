@@ -5,6 +5,10 @@ Safe and simple all-platform notepad protected with AES256-GCM
 ## What / How
 The app runs as a single self-contained local HTML file, no installs, perms, servers, or config needed.
 
+
+## Why
+I needed a safe way to store passwords and contacts on a thumb drive, without any software, autorun capability, OS lock-ins, etc.
+
 ## Setup
 
 1. [download html file](http://pagedemos.com/lockbox_demo/download) (or [save raw](https://raw.githubusercontent.com/rndme/lockbox/master/create-lockbox.html)), run locally in Chrome or Firefox (maybe others)
