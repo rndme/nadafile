@@ -7,7 +7,7 @@ The app runs as a single self-contained local HTML file, no installs, perms, ser
 
 
 ## Why
-I needed a safe way to store passwords and contacts on a thumb drive, without any software, autorun capability, OS lock-ins, etc.
+I needed a safe way to store some text on a thumb drive without any software, autorun capability, drivers, etc.
 
 ## Setup
 
