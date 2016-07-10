@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>lockbox</title>
-		<link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAABTElEQVQ4y7WSv0sCYRjHP6cSb+HWErW0NxkhtOYUTXnQ4igEgf+BSxDRHCS0RCBcg3BtN8Xb0ig4Kk0HgYpL3iDxhFfXcoqdnlbQd3p5fnyeh+/zGkEQAGCaZtKDfeAaWGdaHYTLVtetdBqNt1HQGAFyB6YGssCKUiQk0q0AET6Ae5CkdhwTwLBtO12xrAdgU8GaMF8KEKgjtLVjHyYHqVTJ9/0jYNUPC3zwETqkaAKvwDKwpMAIB2zgM6zdVasJETkF0qMJIgwRjvviZbRt7z667o6IZBTcRpbZQqkLYy+f/1RghM0DkKJ2nNqs9XOmeYVwMulRIlLzFNcM0PW8M5DeZCwKqM8zsKl1D9RzPEDxAgvPIPEAkXd+cMbvgEmeUtlFAAkNH/9E7fSDlufyN7WmTPy1/h9QKmzPzRvFshXEJW/OC+N3sWzNrPkC22t8aoRi58AAAAAASUVORK5CYII="/>
+<link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAABTElEQVQ4y7WSv0sCYRjHP6cSb+HWErW0NxkhtOYUTXnQ4igEgf+BSxDRHCS0RCBcg3BtN8Xb0ig4Kk0HgYpL3iDxhFfXcoqdnlbQd3p5fnyeh+/zGkEQAGCaZtKDfeAaWGdaHYTLVtetdBqNt1HQGAFyB6YGssCKUiQk0q0AET6Ae5CkdhwTwLBtO12xrAdgU8GaMF8KEKgjtLVjHyYHqVTJ9/0jYNUPC3zwETqkaAKvwDKwpMAIB2zgM6zdVasJETkF0qMJIgwRjvviZbRt7z667o6IZBTcRpbZQqkLYy+f/1RghM0DkKJ2nNqs9XOmeYVwMulRIlLzFNcM0PW8M5DeZCwKqM8zsKl1D9RzPEDxAgvPIPEAkXd+cMbvgEmeUtlFAAkNH/9E7fSDlufyN7WmTPy1/h9QKmzPzRvFshXEJW/OC+N3sWzNrPkC22t8aoRi58AAAAAASUVORK5CYII="/>
   
 <style>
 body { opacity: 0; transition: 500ms opacity; font-size: 20px; } /* hide until ready */
@@ -174,7 +174,21 @@ div#info .panel {
 					<button onclick="info.hidden=true" class="btn btn-danger btn-xs pull-right">X</button>
 				</h3>
 			</div>
-			<div class="panel-body">Panel content</div>
+			<div class="panel-body"><p>
+		 Lockbox is a simple way to keep info safe on a USB drive, work computer, or mobile device. </p>
+			  
+			  <p> I (dandavis) wrote it to keep a backup copy of my contacts on a thumb drive apart from my phone, without doxxing all my frinds and family if I lost hold of the thumb drive somehow.</p>
+			  
+			  <p>Running inside an html file, no software or drivers are required to unlock and view or info on any web browser. Each save creates a new copy, allowing easy archiving+revisions and multi-platform compatibility without installation.</p>
+			  
+			  <p>
+			  The encryption is AES-265 GCM, an industry standard authenticated cipher used by modern browsers and governments alike. Lockbox uses a slow complicated process to turn the password into the encryption key to prevent brute-forcing. As it's self contained and needs no perms or install, it's easier to cleanup and remove without leaving a trace than traditional applications or apps.
+			  </p>
+			  <p>More info and the code is available on the <a href="https://github.com/rndme/lockbox">github project page</a> <hr>
+			  
+			  <center><button onclick="info.hidden=true" class="btn btn-danger btn-xs ">Close</button></center>
+			  
+		  </div>
 		</div>
 	</div>
 </main>
