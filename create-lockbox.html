@@ -455,13 +455,21 @@ p);if(h.URL)g(h.URL.createObjectURL(d),!0);else{if("string"===typeof d||d.constr
 /////////////////////////////////////////////////
 //  custom application code
   
+
 function derive(strKey, cost){
 	cost = +cost || 2;
 	strKey=sha3_512(String(strKey));
-	var rounds = (cost*1000) + // 1000 per cost, plus a pseudo-random number between ~ -50 to 1200 :
+	var rounds = (cost*1000) + // 1000 per cost, plus a pseudo-random number between ~ -50 to 1300 :
                      Math.floor((sha3_256( strKey+cost+strKey ).match(/\w{2}/g).map(a=>parseInt(a,16)).reduce((a,b)=>a+Math.abs(b))-2500)/5),
-        pad = Array(33).join(sha3_512( cost + strKey )); // create a 4kb pad to make derivation require more work
-	for(var i=0; i < rounds; i++) strKey=  sha3_256(  (cost+(i*rounds)) + pad.slice(-i).repeat(cost) + strKey + i); 
+	pad = sha3_512( (cost * String(arguments[0]).length * rounds) + strKey   ); // 4kb pad to make derivation require more work
+	for(var i=0; i < 31; i++) pad = sha3_512(pad+strKey+pad) + pad; // create pad of pseudo-random mixins
+	for(var i=0; i < rounds; i++) strKey = sha3_256( 
+              (rounds*cost*strKey.charCodeAt(5)) +
+              sha3_512(pad.slice(-(i+32)))+ 
+              (sha3_512(strKey).match(/\d/g)||[]).join("") + 
+               (+((i*4)/(rounds-5)).toFixed(10)).toString(30)
+             ); 
+
 	return strKey;
 }
 
