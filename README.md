@@ -1,4 +1,4 @@
-# lockbox
+# nadafile
 Safe and simple all-platform notepad protected with AES256-GCM
 
 
@@ -11,7 +11,7 @@ I needed a safe way to store some text on a thumb drive without any software, au
 
 ## Setup
 
-1. [download html file](https://pagedemos.com/lockbox_demo/download) (or [save raw](https://raw.githubusercontent.com/rndme/lockbox/master/create-lockbox.html)), run locally in Chrome or Firefox (maybe others)
+1. [download html file](https://pagedemos.com/new_nadafile/download) (or [save raw](https://raw.githubusercontent.com/rndme/nadafile/master/create-lockbox.html)), run locally in Chrome or Firefox (maybe others)
 2. choose a good password (8 chars min), enter it
 3. write your message or notes
 4. click "Encrypt and Download" to fetch a new password protected copy 
