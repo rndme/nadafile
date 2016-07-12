@@ -59,18 +59,16 @@ body { opacity: 0; transition: 500ms opacity; font-size: 20px; } /* hide until r
 	background-color: red;
 	min-width: 5%;
 }
-#progPW[style*="width: 60%"], 
-#progPW[style*="width: 53%"] {
+#progPW[style*="width: 6"], 
+#progPW[style*="width: 5"] {
 	background-color: orange;
 }
-#progPW[style*="width: 66%"], 
-#progPW[style*="width: 73%"], 
-#progPW[style*="width: 80%"] {
+#progPW[style*="width: 7"], 
+#progPW[style*="width: 8"] {
 	background-color: yellow;
 }
-#progPW[style*="width: 86%"], 
-#progPW[style*="width: 87%"], 
-#progPW[style*="width: 93%"] {
+
+#progPW[style*="width: 9"] {
 	background-color: #7eb316;
 }
 #progPW[style*="width: 100%"] {
@@ -158,7 +156,7 @@ div#info .panel {
 				</span>
 			</div>
 			<div class="progress">
-				<div class="progress-bar progress-bar-success" style="width: 5%" id=progPW></div>
+				<div class="progress-bar progress-bar-success" style="width: 4%" id=progPW></div>
 			</div>
 	 
 		  <center id=spnCrypt class='text-info'></center>
@@ -335,6 +333,7 @@ password.oninput = function(e) {
 	if(/[^\w. ]/.test(pass)) pow = pow + 15;
 	if(/\d/.test(pass)) pow = pow + 7;
 	if(/[\d\!]$/.test(pass)) pow = pow - 7;
+  	if(/^[a-z\s]$/.test(pass)) pow = pow - 7;
 	if(/[A-Z]/.test(pass)) pow = pow + 7;
 	
   	if(doSave.pass && doSave.pass.slice(0, pass.length)!=pass){
@@ -474,7 +473,7 @@ p);if(h.URL)g(h.URL.createObjectURL(d),!0);else{if("string"===typeof d||d.constr
 function derive(strKey, cost){
   	var st=performance.now();
   
-	cost = +cost || 2;
+	cost = +cost || 3;
 	strKey=sha3_512(String(strKey));
 	var rounds = (cost*1000) + // 1000 per cost, plus a pseudo-random number between ~ -50 to 1300 :
                      Math.floor((sha3_256( strKey+cost+strKey ).match(/\w{2}/g).map(a=>parseInt(a,16)).reduce((a,b)=>a+Math.abs(b))-2500)/5),
