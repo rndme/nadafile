@@ -5,7 +5,7 @@
 		<title>nadafile</title>
 		<link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAABTElEQVQ4y7WSv0sCYRjHP6cSb+HWErW0NxkhtOYUTXnQ4igEgf+BSxDRHCS0RCBcg3BtN8Xb0ig4Kk0HgYpL3iDxhFfXcoqdnlbQd3p5fnyeh+/zGkEQAGCaZtKDfeAaWGdaHYTLVtetdBqNt1HQGAFyB6YGssCKUiQk0q0AET6Ae5CkdhwTwLBtO12xrAdgU8GaMF8KEKgjtLVjHyYHqVTJ9/0jYNUPC3zwETqkaAKvwDKwpMAIB2zgM6zdVasJETkF0qMJIgwRjvviZbRt7z667o6IZBTcRpbZQqkLYy+f/1RghM0DkKJ2nNqs9XOmeYVwMulRIlLzFNcM0PW8M5DeZCwKqM8zsKl1D9RzPEDxAgvPIPEAkXd+cMbvgEmeUtlFAAkNH/9E7fSDlufyN7WmTPy1/h9QKmzPzRvFshXEJW/OC+N3sWzNrPkC22t8aoRi58AAAAAASUVORK5CYII="
 		/>
-		<!-- (c) dandavis 2016, [CCBY4] -->
+		<!-- (c) dandavis 2017, [CCBY4] -->
 		<style>
 			body {
 				opacity: 0;
@@ -22,103 +22,37 @@
 			
 		</style>
 		<style>
-			/* style inputs */
-			#btnSave {
-				width: 100%;
-			}
-			#btnLoad {
-				margin-right: -0.4em;
-				margin-left: 0.5em;
-			}
-			#password {
-				transition: 230ms background-color;
-			}
-			#password.error {
-				background-color: red !important;
-			}
-			#password:invalid {
-				background: #f99;
-			}
-			#password:invalid + span {
-				opacity: 0.3;
-				cursor: not-allowed;
-			}
-			#password:invalid + span .btn {
-				pointer-events: none;
-			}
-			#out {
-				width: 100%;
-				padding: 1em;
-				height: calc(100vh - 10em);
-				border: 1px solid #000;
-			}
-			#msgSaving {
-				text-align: center;
-				display: none;
-				position: relative;
-				top: -9em;
-				margin-bottom: -6em;
-				background: #555;
-				padding: 1em;
-				box-shadow: 0 0 0 100vh rgba(77, 77, 77, 0.5);
-			}
-			#out[style*=': 0'] + #msgSaving {
-				display: block;
-			}
-			/* password strength progress bar : */
-			#progPW {
-				background-color: red;
-				min-width: 5%;
-			}
-			#progPW[style*="width: 6"], #progPW[style*="width: 5"] {
-				background-color: orange;
-			}
-			#progPW[style*="width: 7"], #progPW[style*="width: 8"] {
-				background-color: yellow;
-			}
-			#progPW[style*="width: 9"] {
-				background-color: #7eb316;
-			}
-			#progPW[style*="width: 100%"] {
-				background-color: green;
-			}
-			/* loading (password) panel */
-			#loader {
-				max-width: 22em;
-				padding: 15px 25px;
-				position: relative;
-				margin: 0 auto;
-				text-align: center;
-				margin-top: 10%;
-				padding-top: 5px;
-				box-shadow: 1px 1px 2px #222;
-			}
-			/* about panel */
-			div#info {
-				position: fixed;
-				top: 3em;
-				width: 70vw;
-				left: 15vw;
-				z-index: 999999;
-			}
-			div#info .panel {
-				box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.8);
-			}
-			/* patch bootstrap's style a little: */
-			.panel-body {
-				min-height: 15em;
-			}
-			.btn-warning {
-				background-color: #d49741;
-			}
-			.panel-info>.panel-heading {
-				background-color: #197d9a;
-			}
-			.progress {
-				height: 11px;
-				max-width: calc(100% - 3.8em);
-			}
-			
+/* style inputs */
+#btnSave		{width:100%;}
+#btnLoad		{margin-right:-0.4em;margin-left:0.5em;}
+#password		{transition:230ms background-color;}
+#password.error		{background-color:red !important;}
+#password:invalid		{background:#f99;}
+#password:invalid + span		{opacity:0.3;cursor:not-allowed;}
+#password:invalid + span .btn		{pointer-events:none;}
+#out		{width:100%;padding:1em;height:calc(100vh - 10em);border:1px solid #000;}
+#msgSaving		{text-align:center;display:none;position:relative;top:-9em;margin-bottom:-6em;background:#555;padding:1em;box-shadow:0 0 0 100vh rgba(77,77,77,0.5);}
+#out[style*=':0'] + #msgSaving		{display:block;}
+
+/* password strength progress bar : */
+#progPW		{background-color:red;min-width:5%;}
+#progPW[style*="width:6"],#progPW[style*="width:5"]		{background-color:orange;}
+#progPW[style*="width:7"],#progPW[style*="width:8"]		{background-color:yellow;}
+#progPW[style*="width:9"]		{background-color:#7eb316;}
+#progPW[style*="width:100%"]		{background-color:green;}
+
+/* loading (password) panel */
+#loader		{max-width:22em;padding:15px 25px;position:relative;margin:0 auto;text-align:center;margin-top:10%;padding-top:5px;box-shadow:1px 1px 2px #222;}
+
+/* about panel */
+div#info		{position:fixed;top:3em;width:70vw;left:15vw;z-index:999999;}
+div#info .panel		{box-shadow:0 0 0 100vw rgba(0,0,0,0.8);}
+
+/* patch bootstrap's style a little: */
+.panel-body		{min-height:15em;}
+.btn-warning		{background-color:#d49741;}
+.panel-info>.panel-heading		{background-color:#197d9a;}
+.progress		{height:11px;max-width:calc(100% - 3.8em);}	
 		</style>
 	</head>
 	<body class=container>
