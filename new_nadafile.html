@@ -222,7 +222,6 @@ function boot() {
 	document.body.style.opacity = 1;
 	out.style.opacity = 1;
 	password.focus();
-	//reseed(); // use this chance to gather unpredictable data  
 }
 
 function loadData() { // loads saved encrypted data into the editor 
@@ -230,7 +229,6 @@ function loadData() { // loads saved encrypted data into the editor
 	if (password.value.length < 8 || password.validity.customError) { // pw too short, complain and prevent:
 		return indicateError();
 	}
-
 
 	if (!out.value.trim() && !doSave.ready) {
 		doSave.ready = true;
@@ -241,7 +239,6 @@ function loadData() { // loads saved encrypted data into the editor
 		return;
 	}
 
-
 	if (!out.value.trim() && doSave.ready && doSave.pass != password.value) {
 		alert("Password Mismatch, please try again!");
 		password.value = "";
@@ -251,9 +248,6 @@ function loadData() { // loads saved encrypted data into the editor
 
 	loader.style.opacity = 0.5;
 	spnCrypt.textContent = "Building Key from Password"
-
-
-
 	setTimeout(function() {
 
 
@@ -277,10 +271,8 @@ function loadData() { // loads saved encrypted data into the editor
 			loader.hidden = true;
 			out.value = plain;
 			out.focus();
-			//	reseed();
 			loader.style.opacity = 1;
 			spnCrypt.textContent = "";
-
 		});
 	}, 122);
 
@@ -293,17 +285,22 @@ function doSave() { // encrypt data, inject into doc, download current doc, rese
 		var ov = out.value;
 		aes4js.encrypt(password.value, out.value) // encrypt with password 123
 			.then(function(cipher) {
-				var str = JSON.stringify(cipher);
-				labPW.innerHTML = "Enter";
-				var bsc = bs.innerHTML;
-				bs.innerHTML = "";
-
-				out.value = out.textContent = str;
-				download(strDocType + document.documentElement.outerHTML, "nadafile-" + (new Date().toISOString()) + ".html");
-				console.log(document.documentElement.outerHTML);
-				out.value = ov;
-				out.style.opacity = 1;
-				bs.innerHTML = bsc;
+			  var str = JSON.stringify(cipher);
+			  labPW.innerHTML = "Enter";
+			  var bsc = bs.innerHTML;
+			  bs.innerHTML = "";
+			  out.value = out.textContent = str;
+			  var a = document.createElement("a");
+			  a.download = "nadafile-" + (new Date().toISOString()) + ".html";
+			  a.href = "data:text/html;base64,"+ btoa(strDocType + document.documentElement.outerHTML);
+			  document.body.appendChild(a);
+			  setTimeout(function(){
+				  a.click();
+				  a.remove();
+				}, 100);
+			  out.value = ov;
+			  out.style.opacity = 1;
+			  bs.innerHTML = bsc;
 			});
 	}, 350);
 } //end doSave()
@@ -368,12 +365,6 @@ setTimeout(boot, 40);
 
   
 
-// https://github.com/rndme/download
-(function(a,b){"function"===typeof define&&define.amd?define([],b):"object"===typeof exports?module.exports=b():a.download=b()})(this,function(){return function b(c,d,e){function f(b){var c=b.split(/[:;,]/);b=c[1];var c=("base64"==c[2]?atob:decodeURIComponent)(c.pop()),d=c.length,e=0,f=new Uint8Array(d);for(e;e<d;++e)f[e]=c.charCodeAt(e);return new n([f],{type:b})}function g(b,c){if("download"in m)return m.href=b,m.setAttribute("download",p),m.className="download-js-link",m.innerHTML="downloading...",
-m.style.display="none",document.body.appendChild(m),setTimeout(function(){m.click();document.body.removeChild(m);!0===c&&setTimeout(function(){h.URL.revokeObjectURL(m.href)},250)},66),!0;if(/(Version)\/(\d+)\.(\d+)(?:\.(\d+))?.*Safari\//.test(navigator.userAgent))return/^data:/.test(b)&&(b="data:"+b.replace(/^data:([\w\/\-\+]+)/,"application/octet-stream")),!window.open(b)&&confirm("Displaying New Document\n\nUse Save As... to download, then click back to return to this page.")&&(location.href=b),
-!0;var d=document.createElement("iframe");document.body.appendChild(d);!c&&/^data:/.test(b)&&(b="data:"+b.replace(/^data:([\w\/\-\+]+)/,"application/octet-stream"));d.src=b;setTimeout(function(){document.body.removeChild(d)},333)}var h=window,l=e||"application/octet-stream",k=!d&&!e&&c,m=document.createElement("a");e=function(b){return String(b)};var n=h.Blob||h.MozBlob||h.WebKitBlob||e,p=d||"download",n=n.call?n.bind(h):Blob;"true"===String(this)&&(c=[c,l],l=c[0],c=c[1]);if(k&&2048>k.length&&(p=
-k.split("/").pop().split("?")[0],m.href=k,-1!==m.href.indexOf(k))){var q=new XMLHttpRequest;q.open("GET",k,!0);q.responseType="blob";q.onload=function(c){b(c.target.response,p,"application/octet-stream")};setTimeout(function(){q.send()},0);return q}if(/^data\:[\w+\-]+\/[\w+\-\.]+[,;]/.test(c))if(2096103.424<c.length&&n!==e)c=f(c),l=c.type||"application/octet-stream";else return navigator.msSaveBlob?navigator.msSaveBlob(f(c),p):g(c);d=c instanceof n?c:new n([c],{type:l});if(navigator.msSaveBlob)return navigator.msSaveBlob(d,
-p);if(h.URL)g(h.URL.createObjectURL(d),!0);else{if("string"===typeof d||d.constructor===e)try{return g("data:"+l+";base64,"+h.btoa(d))}catch(r){return g("data:"+l+","+encodeURIComponent(d))}l=new FileReader;l.onload=function(b){g(this.result)};l.readAsDataURL(d)}return!0}});
 
 </script>
 <script> // inject bootstrap CSS: (compress to save disk space (there is no gzip on file:///)
